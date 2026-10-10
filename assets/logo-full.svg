@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 560" fill="none">
+  <defs>
+    <linearGradient id="au" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8CC80"/><stop offset=".5" stop-color="#C9A24A"/><stop offset="1" stop-color="#A47F2E"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#au)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- outer triangle -->
+    <path d="M300 40 L570 520 L30 520 Z"/>
+    <!-- inner V -->
+    <path d="M170 270 L300 500 L430 270"/>
+    <!-- sun arc (bowl) -->
+    <path d="M232 220 A68 68 0 0 0 368 220" stroke-width="2.6"/>
+    <!-- rays -->
+    <path d="M300 288 V330" stroke-width="2.2"/>
+    <path d="M278 285 L266 326" stroke-width="2.2"/>
+    <path d="M322 285 L334 326" stroke-width="2.2"/>
+    <path d="M256 274 L236 310" stroke-width="2.2"/>
+    <path d="M344 274 L364 310" stroke-width="2.2"/>
+    <path d="M238 254 L212 282" stroke-width="2"/>
+    <path d="M362 254 L388 282" stroke-width="2"/>
+    <path d="M226 228 L196 246" stroke-width="2"/>
+    <path d="M374 228 L404 246" stroke-width="2"/>
+    <!-- EST lines -->
+    <path d="M180 360 H236" stroke-width="2.4"/>
+    <path d="M364 360 H420" stroke-width="2.4"/>
+  </g>
+  <g fill="url(#au)" font-family="'Manrope','Montserrat','Helvetica Neue',Arial,sans-serif" font-weight="500" text-anchor="middle">
+    <text x="208" y="346" font-size="14" letter-spacing="3">EST.</text>
+    <text x="392" y="346" font-size="14" letter-spacing="3">2026</text>
+    <text x="300" y="470" font-size="46" font-weight="600" letter-spacing="7">СОЛАРОАГРО</text>
+  </g>
+</svg>
