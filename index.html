@@ -170,7 +170,7 @@ body.menu-open{overflow:hidden}
 .hero .logo-wrap{position:relative;justify-self:center}
 .hero .logo-wrap::before{content:"";position:absolute;inset:-20%;border-radius:50%;background:radial-gradient(circle,rgba(242,183,5,.28),transparent 60%);animation:pulse 4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.6;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
-@media(max-width:860px){.hero .logo-wrap{display:none}}
+@media(max-width:860px){.hero .logo-wrap{display:block;margin:36px auto 0;width:240px}.hero .logo-big{width:240px;height:224px}.hero .logo-wrap::before{inset:-10%}}
 
 /* hero text entrance */
 .hero .eyebrow,.hero h1,.hero .lead,.hero .cta,.hero .stats{opacity:0;transform:translateY(24px);animation:up .8s cubic-bezier(.2,.8,.2,1) forwards}
@@ -215,7 +215,7 @@ section{position:relative}
 .side-btn span{white-space:nowrap}
 /* mobile bottom bar */
 .mbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(15,15,15,.96);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:8px;box-shadow:0 -10px 30px rgba(0,0,0,.5)}
-.mbar-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:13px 6px;border-radius:12px;font-weight:700;font-size:14px;border:1px solid transparent}
+.mbar-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:13px 4px;border-radius:12px;font-weight:700;font-size:13px;border:1px solid transparent;white-space:nowrap}
 .mbar-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .mbar-btn.ghost{border-color:var(--gold);color:var(--gold2)}
 .mbar-btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#141210}
