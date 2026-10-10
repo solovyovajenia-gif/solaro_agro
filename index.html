@@ -222,6 +222,40 @@ section{position:relative}
 .mbar-btn.viber{background:linear-gradient(135deg,#8f5db7,#7360f2);color:#fff}
 .mbar-btn.viber svg{fill:currentColor;stroke:none}
 @media(max-width:860px){.side{display:none}.mbar{display:flex}body{padding-bottom:76px}}
+
+/* ===== mobile layering ===== */
+.dots,.swipe-hint{display:none}
+@media(max-width:860px){
+  /* swipe carousels */
+  .carousel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 20px 18px;margin:0 -20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .carousel::-webkit-scrollbar{display:none}
+  .carousel>.card{flex:0 0 84%;scroll-snap-align:center;transform:scale(.92) translateY(10px);opacity:.55;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s,box-shadow .45s}
+  .carousel>.card.active{transform:none;opacity:1;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(201,162,74,.25)}
+  .carousel>.card.reveal{transform:scale(.92) translateY(10px)}
+  .carousel>.card.reveal.active{transform:none}
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:-4px}
+  .dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.3s}
+  .dots i.on{width:24px;border-radius:4px;background:var(--gold)}
+  .swipe-hint{display:flex;align-items:center;gap:8px;color:var(--dim);font-size:13px;margin-top:6px}
+  .swipe-hint svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:2;animation:nudge 1.6s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+  /* sticky stacked steps */
+  .steps{display:block}
+  .steps .step{position:sticky;top:calc(var(--stick,90px));margin-bottom:14px;background:#1f1d1a;box-shadow:0 -10px 30px rgba(0,0,0,.45);transform:none!important;opacity:1!important}
+  .steps .step:nth-child(1){--stick:90px}.steps .step:nth-child(2){--stick:104px}.steps .step:nth-child(3){--stick:118px}.steps .step:nth-child(4){--stick:132px}
+  .steps .step.passed{filter:brightness(.7);transform:scale(.97)!important}
+  .steps::after{content:"";display:block;height:8vh}
+  /* alternate direction reveals */
+  .why .reveal:nth-child(odd),.contact-grid .reveal:nth-child(odd){transform:translateX(-30px)}
+  .why .reveal:nth-child(even),.contact-grid .reveal:nth-child(even){transform:translateX(30px)}
+  .why .reveal.in,.contact-grid .reveal.in{transform:none}
+  /* parallax layers */
+  .hero .logo-wrap{transform:translateY(var(--py,0))}
+  #products::before{transform:translateY(calc(var(--py,0) * -1))}
+  #why::after{transform:rotate(-8deg) translateY(var(--py,0));opacity:.07}
+  .toll::before{transform:translateY(var(--py,0))}
+  .hero .rings{transform:translateY(calc(var(--py,0) * .6))}
+}
 </style>
 </head>
 <body>
@@ -293,7 +327,7 @@ section{position:relative}
     <div class="eyebrow reveal">Продукция</div>
     <h2 class="reveal" data-d="1">Что мы производим</h2>
     <p class="lead reveal" data-d="2" style="margin-bottom:40px">Два продукта из одного сырья. Отгружаем оптовыми партиями с сопроводительными документами.</p>
-    <div class="grid2">
+    <div class="grid2 carousel" data-carousel>
       <div class="card reveal" data-d="1">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 3h6v3l2 3v12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9l2-3z"/><path d="M7 14h10"/></svg></div>
         <span class="tag">Масло</span>
@@ -317,6 +351,7 @@ section{position:relative}
         </ul>
       </div>
     </div>
+    <div class="dots" aria-hidden="true"></div><div class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте</div>
   </div>
 </section>
 
@@ -356,11 +391,12 @@ section{position:relative}
   <div class="wrap">
     <div class="eyebrow reveal">Кому подходит</div>
     <h2 class="reveal" data-d="1">С кем мы работаем</h2>
-    <div class="aud" style="margin-top:36px">
+    <div class="aud carousel" data-carousel style="margin-top:36px">
       <div class="card reveal" data-d="1"><h3>Сельхозпредприятия и фермеры</h3><p>Выращиваете рапс? Переработаем ваше сырьё или купим его. Нужны корма? Поставим жмых для вашего стада.</p></div>
       <div class="card reveal" data-d="2"><h3>Комбикормовые заводы</h3><p>Регулярные поставки рапсового жмыха стабильного качества для производства комбикормов.</p></div>
       <div class="card reveal" data-d="3"><h3>Переработчики и трейдеры</h3><p>Рапсовое масло оптом для пищевой, кормовой и технической переработки, в том числе на экспорт.</p></div>
     </div>
+    <div class="dots" aria-hidden="true"></div><div class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте</div>
   </div>
 </section>
 
@@ -434,6 +470,27 @@ section{position:relative}
   document.querySelectorAll('.card').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})});
   var pc=document.querySelector('.particles');if(pc){for(var i=0;i<26;i++){var p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.animationDuration=(9+Math.random()*12)+'s';p.style.animationDelay=(-Math.random()*20)+'s';p.style.width=p.style.height=(2+Math.random()*4)+'px';pc.appendChild(p)}}
   document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();document.body.classList.remove('menu-open');setTimeout(function(){window.scrollTo({top:t.offsetTop-60,behavior:'smooth'})},50)}})});
+  // mobile carousels
+  var mq=matchMedia('(max-width:860px)');
+  document.querySelectorAll('[data-carousel]').forEach(function(c){
+    var cards=[].slice.call(c.querySelectorAll(':scope>.card'));var dots=c.nextElementSibling;
+    cards.forEach(function(){var d=document.createElement('i');dots.appendChild(d)});
+    var ds=[].slice.call(dots.children);
+    function upd(){if(!mq.matches){cards.forEach(function(x){x.classList.remove('active')});return}
+      var mid=c.scrollLeft+c.clientWidth/2,best=0,bd=1e9;
+      cards.forEach(function(x,i){var d=Math.abs(x.offsetLeft+x.offsetWidth/2-mid);if(d<bd){bd=d;best=i}});
+      cards.forEach(function(x,i){x.classList.toggle('active',i===best)});ds.forEach(function(d,i){d.classList.toggle('on',i===best)});}
+    c.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+    ds.forEach(function(d,i){d.addEventListener('click',function(){cards[i].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})})});
+  });
+  // sticky steps + parallax
+  var steps=[].slice.call(document.querySelectorAll('.steps .step'));
+  var pSecs=[].slice.call(document.querySelectorAll('.hero,#products,#why,.toll'));
+  function fx(){if(!mq.matches)return;
+    steps.forEach(function(st,i){var n=steps[i+1];if(!n)return;var r=n.getBoundingClientRect();st.classList.toggle('passed',r.top<st.getBoundingClientRect().top+40)});
+    pSecs.forEach(function(sec){var r=sec.getBoundingClientRect();var p=(innerHeight-r.top)/(innerHeight+r.height);sec.style.setProperty('--py',((p-.5)*60).toFixed(1)+'px')});
+  }
+  addEventListener('scroll',function(){requestAnimationFrame(fx)},{passive:true});fx();
 })();
 </script>
 </body>
