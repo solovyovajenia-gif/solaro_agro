@@ -41,6 +41,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(15,15,15,.92);border-bot
 .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:15px}
 .brand svg{width:40px;height:40px}
 .nav ul{display:flex;gap:28px;list-style:none;font-weight:600;font-size:15px;color:var(--muted)}
+.nav ul .menu-phone{display:none}
 .nav ul a:hover{color:var(--gold2)}
 .nav .phone{font-weight:700;color:var(--text)}
 @media(max-width:860px){.nav ul{display:none}}
@@ -144,7 +145,7 @@ header.scrolled .nav{height:60px}
   .nav ul li{border-bottom:1px solid var(--line);padding:18px 4px;opacity:0;transform:translateX(20px);transition:.4s}
   .nav ul.open li{opacity:1;transform:none}
   .nav ul.open li:nth-child(1){transition-delay:.05s}.nav ul.open li:nth-child(2){transition-delay:.1s}.nav ul.open li:nth-child(3){transition-delay:.15s}.nav ul.open li:nth-child(4){transition-delay:.2s}
-  .nav ul li.menu-phone{border:0;margin-top:14px}
+  .nav ul li.menu-phone{display:block;border:0;margin-top:14px}
   .nav ul li.menu-phone a{display:inline-flex;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#141210;padding:14px 22px;border-radius:12px;font-weight:700}
   .nav ul li.menu-phone a::after{display:none}
 }
@@ -393,7 +394,7 @@ section{position:relative}
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
   document.querySelectorAll('.card').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})});
   var pc=document.querySelector('.particles');if(pc){for(var i=0;i<26;i++){var p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.animationDuration=(9+Math.random()*12)+'s';p.style.animationDelay=(-Math.random()*20)+'s';p.style.width=p.style.height=(2+Math.random()*4)+'px';pc.appendChild(p)}}
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();scrollTo({top:t.offsetTop-60,behavior:'smooth'})}})});
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();document.body.classList.remove('menu-open');setTimeout(function(){window.scrollTo({top:t.offsetTop-60,behavior:'smooth'})},50)}})});
 })();
 </script>
 </body>
